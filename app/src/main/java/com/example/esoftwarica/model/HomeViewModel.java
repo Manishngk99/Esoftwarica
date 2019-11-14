@@ -1,4 +1,4 @@
-package com.example.esoftwarica.ui.home;
+package com.example.esoftwarica.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,6 +11,14 @@ public class HomeViewModel {
     private String address;
     private String gender;
     private int imageId;
+
+    public HomeViewModel(String name, String age, String address, String gender, int imageId) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+        this.gender = gender;
+        this.imageId = imageId;
+    }
 
 
     public String getName() {
@@ -53,13 +61,7 @@ public class HomeViewModel {
         this.imageId = imageId;
     }
 
-    public HomeViewModel(String name, String age, String address, String gender, int imageId) {
-        this.name = name;
-        this.age = age;
-        this.address = address;
-        this.gender = gender;
-        this.imageId = imageId;
-    }
+
 
 
 }
