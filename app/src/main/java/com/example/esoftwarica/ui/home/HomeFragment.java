@@ -13,19 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.esoftwarica.R;
 import com.example.esoftwarica.adapter.StudentAdapter;
 import com.example.esoftwarica.model.HomeViewModel;
-import com.example.esoftwarica.model.addStudentViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    static String name, age, gender, address;
-    static int imageId;
-    final List<HomeViewModel> homeViewModels = new ArrayList<>();
+    public static List<HomeViewModel> homeViewModels = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -33,26 +29,14 @@ public class HomeFragment extends Fragment{
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         recyclerView = root.findViewById(R.id.recycleView);
+        if (homeViewModels.size() == 0) {
+            homeViewModels.add(new HomeViewModel(
+                    "manisha", "18", "kathmandu", "female", R.drawable.female));
+            homeViewModels.add(new HomeViewModel(
+                    "manish", "18", "kathmandu", "male", R.drawable.male));
+        }
 
-
-        addStudentViewModel addStudentViewModel1 = new addStudentViewModel();
-        name = addStudentViewModel1.getName();
-        age = addStudentViewModel1.getAge();
-        gender = addStudentViewModel1.getGender();
-        address = addStudentViewModel1.getAddress();
-        imageId = addStudentViewModel1.getImageId();
-
-
-
-
-        homeViewModels.add(new HomeViewModel(
-                "manisha", "18","kathmandu","female",R.drawable.female));
-        homeViewModels.add(new HomeViewModel(
-                "manish", "18","kathmandu","male",R.drawable.male));
-
-
-        StudentAdapter studentAdapter = new StudentAdapter(getActivity(),homeViewModels);
-        homeViewModels.add(new HomeViewModel(name, age, address, gender, imageId));
+        StudentAdapter studentAdapter = new StudentAdapter(getActivity(), homeViewModels);
         recyclerView.setAdapter(studentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
